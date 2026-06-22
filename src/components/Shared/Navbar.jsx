@@ -20,7 +20,7 @@ export default function Navbar() {
           <div className="flex gap-3">
             <Link
               href="/login"
-              className="px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-blue-900 transition"
+              className="px-4 py-2 rounded-lg border bg-blue-600 border-white hover:bg-white hover:text-blue-900 transition"
             >
               Login
             </Link>
