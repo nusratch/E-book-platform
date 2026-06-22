@@ -1,4 +1,6 @@
 import EbookCard from "@/components/ebooks/EbookCard";
+import EbookFilters from "@/components/ebooks/EbookFilters";
+import Pagination from "@/components/ebooks/Pagination";
 
 const ebooks = [
   {
@@ -42,6 +44,8 @@ export default function BrowsePage() {
         Browse Ebooks
       </h1>
 
+      <EbookFilters />
+
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {ebooks.map((ebook) => (
           <EbookCard
@@ -50,6 +54,8 @@ export default function BrowsePage() {
           />
         ))}
       </div>
+
+      <Pagination />
     </div>
   );
 }
