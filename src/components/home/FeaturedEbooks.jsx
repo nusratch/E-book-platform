@@ -28,13 +28,13 @@ export default function FeaturedEbooks() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {ebooks.slice(0, 6).map((ebook) => (
           <div
             key={ebook._id}
-            className="rounded-2xl overflow-hidden border bg-white shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full"
+            className="rounded-2xl overflow-hidden border bg-white shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-[500px]"
           >
-            <div className="aspect-[3/4] overflow-hidden">
+            <div className="h-[280px] overflow-hidden">
               <img
                 src={ebook.cover}
                 alt={ebook.title}
@@ -42,9 +42,9 @@ export default function FeaturedEbooks() {
               />
             </div>
 
-            <div className="p-5 flex flex-col flex-grow">
+            <div className="p-5 flex flex-col flex-1">
               <div className="flex justify-between items-center mb-4">
-                <span className="text-xs px-3 py-1 rounded-full bg-blue-100 text-blue-700 truncate">
+                <span className="text-xs px-3 py-1 rounded-full bg-blue-100 text-blue-700">
                   {ebook.genre}
                 </span>
 
@@ -59,11 +59,11 @@ export default function FeaturedEbooks() {
                 </span>
               </div>
 
-              <h3 className="text-xl font-bold min-h-[56px] line-clamp-2">
+              <h3 className="text-xl font-bold h-14 overflow-hidden">
                 {ebook.title}
               </h3>
 
-              <p className="text-gray-500 mt-2 min-h-[24px]">
+              <p className="text-gray-500 mt-2 h-6 overflow-hidden">
                 {ebook.writer}
               </p>
 
