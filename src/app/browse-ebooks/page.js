@@ -39,11 +39,13 @@ const ebooks = [
 
 export default function BrowsePage() {
   return (
+
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
       <div className="text-center mb-8 md:mb-12">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
           Browse Ebooks
         </h1>
+        
 
         <p className="text-gray-500 mt-3 text-sm sm:text-base">
           Explore thousands of ebooks from different genres
