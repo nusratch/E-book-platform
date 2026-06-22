@@ -1,3 +1,0 @@
-export default function WriterPage() {
-  return <div>Writer Dashboard</div>;
-}

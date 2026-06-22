@@ -71,6 +71,7 @@ export default function RegisterPage() {
             <select className="w-full border rounded-lg px-4 py-3">
               <option value="user">Reader</option>
               <option value="writer">Writer</option>
+               <option value="writer">Admin</option>
             </select>
           </div>
 
