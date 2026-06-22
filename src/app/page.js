@@ -6,6 +6,8 @@ export default function Home() {
     <>
       <Hero />
       <FeaturedEbooks />
+      <TopWriters />
+      <Genres />
     </>
   );
 }
