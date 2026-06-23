@@ -8,11 +8,12 @@ import Pagination from "@/components/ebooks/Pagination";
 export default function BrowsePage() {
   const [ebooks, setEbooks] = useState([]);
 
- useEffect(() => {
-  fetch("https://e-book-platform-backend.vercel.app/ebooks")
-    .then((res) => res.json())
-    .then((data) => setEbooks(data));
-}, []);
+  useEffect(() => {
+    fetch("https://e-book-platform-backend.vercel.app/ebooks")
+      .then((res) => res.json())
+      .then((data) => setEbooks(data))
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
@@ -30,7 +31,7 @@ export default function BrowsePage() {
         <EbookFilters />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {ebooks.map((ebook) => (
           <EbookCard
             key={ebook._id}
