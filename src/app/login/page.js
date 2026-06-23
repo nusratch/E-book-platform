@@ -1,6 +1,62 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import axios from "axios";
+import API_URL from "@/lib/api";
 
 export default function LoginPage() {
+  const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.get(
+        `${API_URL}/users/${email}`
+      );
+
+      const user = res.data;
+
+      if (!user) {
+        return alert("User not found");
+      }
+
+      if (user.password !== password) {
+        return alert("Incorrect password");
+      }
+
+      const tokenRes = await axios.post(
+        `${API_URL}/jwt`,
+        {
+          email: user.email,
+          role: user.role,
+        }
+      );
+
+      localStorage.setItem(
+        "token",
+        tokenRes.data.token
+      );
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify(user)
+      );
+
+      alert("Login Successful");
+
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+      alert("Login Failed");
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-10">
       <div className="w-full max-w-md bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
@@ -13,8 +69,10 @@ export default function LoginPage() {
           Login to continue reading ebooks
         </p>
 
-        <form className="space-y-4">
-
+        <form
+          onSubmit={handleLogin}
+          className="space-y-4"
+        >
           <div>
             <label className="block mb-2 font-medium text-sm sm:text-base">
               Email
@@ -22,6 +80,11 @@ export default function LoginPage() {
 
             <input
               type="email"
+              required
+              value={email}
+              onChange={(e) =>
+                setEmail(e.target.value)
+              }
               placeholder="Enter your email"
               className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -34,6 +97,11 @@ export default function LoginPage() {
 
             <input
               type="password"
+              required
+              value={password}
+              onChange={(e) =>
+                setPassword(e.target.value)
+              }
               placeholder="Enter your password"
               className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -45,12 +113,13 @@ export default function LoginPage() {
           >
             Login
           </button>
-
         </form>
 
         <div className="my-6 flex items-center">
           <div className="flex-1 border-t"></div>
-          <span className="px-4 text-gray-500 text-sm">OR</span>
+          <span className="px-4 text-gray-500 text-sm">
+            OR
+          </span>
           <div className="flex-1 border-t"></div>
         </div>
 
