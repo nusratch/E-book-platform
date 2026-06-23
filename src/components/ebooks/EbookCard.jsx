@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function EbookCard({ ebook }) {
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden border h-[500px] flex flex-col hover:shadow-2xl transition-all duration-300">
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden border h-[700px] flex flex-col hover:shadow-2xl transition-all duration-300">
       
       <img
         src={ebook.cover}

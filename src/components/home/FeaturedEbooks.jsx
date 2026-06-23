@@ -32,18 +32,16 @@ export default function FeaturedEbooks() {
         {ebooks.slice(0, 6).map((ebook) => (
           <div
             key={ebook._id}
-            className="rounded-2xl overflow-hidden border bg-white shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-[500px]"
+            className="rounded-2xl overflow-hidden border bg-white shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 h-[550px] flex flex-col"
           >
-            <div className="h-[280px] overflow-hidden">
-              <img
-                src={ebook.cover}
-                alt={ebook.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <img
+              src={ebook.cover}
+              alt={ebook.title}
+              className="w-full h-[320px] object-cover flex-shrink-0"
+            />
 
             <div className="p-5 flex flex-col flex-1">
-              <div className="flex justify-between items-center mb-4">
+              <div className="flex justify-between items-center mb-3">
                 <span className="text-xs px-3 py-1 rounded-full bg-blue-100 text-blue-700">
                   {ebook.genre}
                 </span>
@@ -59,15 +57,15 @@ export default function FeaturedEbooks() {
                 </span>
               </div>
 
-              <h3 className="text-xl font-bold h-14 overflow-hidden">
+              <h3 className="text-xl font-bold line-clamp-2 min-h-[56px]">
                 {ebook.title}
               </h3>
 
-              <p className="text-gray-500 mt-2 h-6 overflow-hidden">
+              <p className="text-gray-500 mt-2 min-h-[24px]">
                 {ebook.writer}
               </p>
 
-              <div className="mt-auto pt-5">
+              <div className="mt-auto">
                 <p className="text-blue-700 font-bold text-lg">
                   ${ebook.price}
                 </p>
