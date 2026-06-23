@@ -9,9 +9,10 @@ import {
 export default function Footer() {
   return (
     <footer className="bg-blue-950 text-white mt-20 md:mt-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
-          
+
           <div className="text-center sm:text-left">
             <h2 className="text-2xl font-bold mb-4">
               Fable
@@ -30,7 +31,10 @@ export default function Footer() {
 
             <ul className="space-y-3 text-slate-300">
               <li>
-                <Link href="/" className="hover:text-white transition">
+                <Link
+                  href="/"
+                  className="hover:text-white transition"
+                >
                   Home
                 </Link>
               </li>
@@ -62,19 +66,28 @@ export default function Footer() {
 
             <ul className="space-y-3 text-slate-300">
               <li>
-                <Link href="#" className="hover:text-white transition">
+                <Link
+                  href="#"
+                  className="hover:text-white transition"
+                >
                   About
                 </Link>
               </li>
 
               <li>
-                <Link href="#" className="hover:text-white transition">
+                <Link
+                  href="#"
+                  className="hover:text-white transition"
+                >
                   Contact
                 </Link>
               </li>
 
               <li>
-                <Link href="#" className="hover:text-white transition">
+                <Link
+                  href="#"
+                  className="hover:text-white transition"
+                >
                   Privacy Policy
                 </Link>
               </li>
@@ -102,20 +115,32 @@ export default function Footer() {
               </button>
             </div>
 
-            <div className="flex justify-center sm:justify-start gap-5 mt-6">
-              <a href="#" className="hover:text-blue-300 transition">
+            <div className="flex justify-center sm:justify-start gap-7 mt-8 mb-6">
+              <a
+                href="#"
+                className="hover:text-blue-300 transition"
+              >
                 <FaFacebookF size={18} />
               </a>
 
-              <a href="#" className="hover:text-blue-300 transition">
+              <a
+                href="#"
+                className="hover:text-blue-300 transition"
+              >
                 <FaXTwitter size={18} />
               </a>
 
-              <a href="#" className="hover:text-blue-300 transition">
+              <a
+                href="#"
+                className="hover:text-blue-300 transition"
+              >
                 <FaLinkedinIn size={18} />
               </a>
 
-              <a href="#" className="hover:text-blue-300 transition">
+              <a
+                href="#"
+                className="hover:text-blue-300 transition"
+              >
                 <FaGithub size={18} />
               </a>
             </div>
@@ -123,9 +148,10 @@ export default function Footer() {
 
         </div>
 
-        <div className="border-t border-slate-700 mt-10 pt-6 text-center text-sm md:text-base text-slate-400">
+        <div className="border-t border-slate-700 mt-14 pt-8 text-center text-sm md:text-base text-slate-400">
           © 2026 Fable. All Rights Reserved.
         </div>
+
       </div>
     </footer>
   );

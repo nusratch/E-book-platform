@@ -10,13 +10,14 @@ export default function Navbar() {
     <nav className="bg-blue-900 text-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="h-20 flex items-center justify-between">
+
           <Link href="/">
-            <h1 className="text-2xl md:text-3xl font-bold">
+            <h1 className="text-2xl lg:text-3xl font-bold">
               📚 Fable
             </h1>
           </Link>
 
-          <div className="hidden md:flex items-center gap-8 font-medium">
+          <div className="hidden lg:flex items-center gap-6 font-medium">
             <Link
               href="/"
               className="hover:text-blue-200 transition"
@@ -39,10 +40,10 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className="hidden md:flex gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <Link
               href="/login"
-              className="px-4 py-2 rounded-lg border bg-blue-600 border-white hover:bg-white hover:text-blue-900 transition"
+              className="px-4 py-2 rounded-lg border border-white bg-blue-600 hover:bg-white hover:text-blue-900 transition"
             >
               Login
             </Link>
@@ -57,18 +58,22 @@ export default function Navbar() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-3xl"
+            className="lg:hidden text-3xl"
+            aria-label="Toggle Menu"
           >
             ☰
           </button>
+
         </div>
 
         {isOpen && (
-          <div className="md:hidden pb-5 border-t border-blue-700">
-            <div className="flex flex-col gap-4 pt-5">
+          <div className="lg:hidden border-t border-blue-700 py-5">
+            <div className="flex flex-col gap-4">
+
               <Link
                 href="/"
                 onClick={() => setIsOpen(false)}
+                className="hover:text-blue-200 transition"
               >
                 Home
               </Link>
@@ -76,6 +81,7 @@ export default function Navbar() {
               <Link
                 href="/browse-ebooks"
                 onClick={() => setIsOpen(false)}
+                className="hover:text-blue-200 transition"
               >
                 Browse Ebooks
               </Link>
@@ -83,6 +89,7 @@ export default function Navbar() {
               <Link
                 href="/dashboard"
                 onClick={() => setIsOpen(false)}
+                className="hover:text-blue-200 transition"
               >
                 Dashboard
               </Link>
@@ -90,7 +97,7 @@ export default function Navbar() {
               <div className="flex flex-col gap-3 pt-2">
                 <Link
                   href="/login"
-                  className="px-4 py-2 rounded-lg border bg-blue-600 border-white text-center"
+                  className="px-4 py-2 rounded-lg border border-white bg-blue-600 text-center"
                   onClick={() => setIsOpen(false)}
                 >
                   Login
@@ -104,6 +111,7 @@ export default function Navbar() {
                   Register
                 </Link>
               </div>
+
             </div>
           </div>
         )}

@@ -2,31 +2,33 @@ import Link from "next/link";
 
 export default function EbookCard({ ebook }) {
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden border h-[700px] flex flex-col hover:shadow-2xl transition-all duration-300">
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden border flex flex-col h-[480px] md:h-[500px] hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
       
-      <img
-        src={ebook.cover}
-        alt={ebook.title}
-        className="w-full h-[280px] object-cover"
-      />
+      <div className="h-[240px] md:h-[280px] overflow-hidden">
+        <img
+          src={ebook.cover}
+          alt={ebook.title}
+          className="w-full h-full object-cover"
+        />
+      </div>
 
-      <div className="p-5 flex flex-col flex-1">
-        <h3 className="text-xl font-bold min-h-[56px]">
+      <div className="p-4 md:p-5 flex flex-col flex-1">
+        <h3 className="text-lg md:text-xl font-bold line-clamp-2 min-h-[56px]">
           {ebook.title}
         </h3>
 
-        <p className="text-gray-500 mt-2 min-h-[24px]">
+        <p className="text-gray-500 mt-2 text-sm md:text-base">
           {ebook.writer}
         </p>
 
-        <div className="mt-auto flex justify-between items-center">
-          <p className="font-bold text-blue-800">
+        <div className="mt-auto pt-5 flex items-center justify-between">
+          <p className="font-bold text-blue-800 text-lg">
             ${ebook.price}
           </p>
 
           <Link
             href={`/ebook/${ebook._id || ebook.id}`}
-            className="bg-blue-900 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+            className="bg-blue-900 text-white min-w-[100px] px-6 py-2.5 rounded-lg text-sm md:text-base hover:bg-blue-700 transition flex items-center justify-center"
           >
             Details
           </Link>
