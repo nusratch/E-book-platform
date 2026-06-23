@@ -7,7 +7,7 @@ export default function FeaturedEbooks() {
   const [ebooks, setEbooks] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:55000/ebooks")
+   fetch("https://e-book-platform-backend.vercel.app/ebooks")
       .then((res) => res.json())
       .then((data) => setEbooks(data))
       .catch((error) => console.log(error));

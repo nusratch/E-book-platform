@@ -1,16 +1,16 @@
 async function getEbook(id) {
-const res = await fetch(
-"http://localhost:55000/ebooks/${id}",
-{
-cache: "no-store",
-}
-);
+  const res = await fetch(
+    `https://e-book-platform-backend.vercel.app/ebooks/${id}`,
+    {
+      cache: "no-store",
+    }
+  );
 
-if (!res.ok) {
-return null;
-}
+  if (!res.ok) {
+    return null;
+  }
 
-return res.json();
+  return res.json();
 }
 
 export default async function EbookDetailsPage({

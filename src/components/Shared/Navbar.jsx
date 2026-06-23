@@ -17,7 +17,7 @@ export default function Navbar() {
             </h1>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-6 font-medium">
+          <div className="hidden md:flex items-center gap-6 lg:gap-8 font-medium">
             <Link
               href="/"
               className="hover:text-blue-200 transition"
@@ -40,7 +40,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-3">
             <Link
               href="/login"
               className="px-4 py-2 rounded-lg border border-white bg-blue-600 hover:bg-white hover:text-blue-900 transition"
@@ -58,7 +58,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-3xl"
+            className="md:hidden text-3xl"
             aria-label="Toggle Menu"
           >
             ☰
@@ -67,7 +67,7 @@ export default function Navbar() {
         </div>
 
         {isOpen && (
-          <div className="lg:hidden border-t border-blue-700 py-5">
+          <div className="md:hidden border-t border-blue-700 py-5">
             <div className="flex flex-col gap-4">
 
               <Link

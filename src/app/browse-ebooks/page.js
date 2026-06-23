@@ -8,11 +8,11 @@ import Pagination from "@/components/ebooks/Pagination";
 export default function BrowsePage() {
   const [ebooks, setEbooks] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:55000/ebooks")
-      .then((res) => res.json())
-      .then((data) => setEbooks(data));
-  }, []);
+ useEffect(() => {
+  fetch("https://e-book-platform-backend.vercel.app/ebooks")
+    .then((res) => res.json())
+    .then((data) => setEbooks(data));
+}, []);
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
