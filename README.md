@@ -1,36 +1,197 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+📚 Fable – Ebook Sharing Platform
 
-## Getting Started
+# Live Website
 
-First, run the development server:
+Live Site: https://your-live-site.vercel.app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# Client Repository
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+https://github.com/nusratch/E-book-platform
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+# Server Repository
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+https://github.com/nusratch/E-book-platform-backend
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Purpose
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The goal of Fable is to create an easy-to-use digital library where:
 
-## Deploy on Vercel
+- Readers can discover and purchase ebooks.
+- Writers can publish and manage their ebooks.
+- Admins can manage the complete platform.
+- Secure authentication and payments provide a reliable user experience.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+# Key Features
+
+Authentication
+
+- Email & Password Login
+- Google Login
+- JWT Authentication
+- Role-Based Authorization
+- Protected Private Routes
+
+Reader Features
+
+- Browse all ebooks
+- Search, Filter & Sort ebooks
+- View ebook details
+- Purchase ebooks using Stripe
+- Bookmark ebooks
+- Reading History
+- Purchase History
+- User Profile
+
+Writer Features
+
+- Writer Dashboard
+- Add New Ebook
+- Edit Ebook
+- Delete Ebook
+- Publish / Unpublish Ebook
+- Sales History
+- Earnings Statistics
+- Writer Profile
+
+Admin Features
+
+- Manage Users
+- Manage Writers
+- Manage All Ebooks
+- Publish / Unpublish Ebooks
+- Delete Users
+- Delete Ebooks
+- View Transactions
+- Dashboard Analytics
+
+Dashboard
+
+- Separate dashboards for User, Writer and Admin
+- Responsive Sidebar
+- Statistics Cards
+- Analytics Charts
+- Full Responsive Design
+
+Payment System
+
+- Stripe Checkout Integration
+- Secure Ebook Purchase
+- Purchase History
+- Transaction Records
+
+Other Features
+
+- Responsive Design
+- Skeleton Loading
+- Global Loading Spinner
+- Custom 404 Page
+- Error Handling
+- Image Upload using ImgBB
+- Framer Motion Animations
+- Mobile Friendly Layout
+
+
+# Technologies Used
+
+Frontend
+
+- Next.js
+- Tailwind CSS
+- HeoUI
+- Framer Motion
+- Axios
+- React Icons
+- React Hook Form
+- React Hot Toast
+
+Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- JWT
+- Stripe
+- CORS
+- Dotenv
+
+Authentication
+
+- Better Auth
+- Google OAuth
+
+Image Hosting
+
+- ImgBB API
+
+Deployment
+
+- Vercel
+- MongoDB Atlas
+
+
+# User Roles
+
+ Reader
+
+- Browse ebooks
+- Purchase ebooks
+- Bookmark ebooks
+- Manage profile
+- Reading history
+
+ Writer
+
+- Upload ebooks
+- Manage ebooks
+- View sales
+- Earnings analytics
+
+Admin
+
+- Manage users
+- Manage writers
+- Manage ebooks
+- View transactions
+- Analytics dashboard
+
+
+
+# NPM Packages Used
+
+Frontend
+
+- next
+- react
+- react-dom
+- tailwindcss
+- daisyui
+- framer-motion
+- axios
+- react-icons
+- react-hook-form
+- react-hot-toast
+
+Backend
+
+- express
+- mongodb
+- jsonwebtoken
+- dotenv
+- cors
+- stripe
+- better-auth
+
+
+
+
+# Admin Credentials
+
+Email: admin@fable.com
+
+Password :Admin@123
+
+
