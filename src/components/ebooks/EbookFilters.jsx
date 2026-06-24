@@ -1,33 +1,56 @@
-export default function EbookFilters() {
+export default function EbookFilters({
+  search,
+  setSearch,
+  genre,
+  setGenre,
+  priceRange,
+  setPriceRange,
+  sortBy,
+  setSortBy,
+}) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 md:mb-10">
       <input
         type="text"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
         placeholder="Search by title or writer"
         className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
       />
 
-      <select className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500">
-        <option>All Genres</option>
-        <option>Fiction</option>
-        <option>Mystery</option>
-        <option>Romance</option>
-        <option>Sci-Fi</option>
-        <option>Fantasy</option>
-        <option>Horror</option>
+      <select
+        value={genre}
+        onChange={(e) => setGenre(e.target.value)}
+        className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="all">All Genres</option>
+        <option value="Fiction">Fiction</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Romance">Romance</option>
+        <option value="Sci-Fi">Sci-Fi</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Horror">Horror</option>
       </select>
 
-      <select className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500">
-        <option>All Prices</option>
-        <option>$0 - $10</option>
-        <option>$10 - $20</option>
-        <option>$20+</option>
+      <select
+        value={priceRange}
+        onChange={(e) => setPriceRange(e.target.value)}
+        className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="all">All Prices</option>
+        <option value="0-10">$0 - $10</option>
+        <option value="10-20">$10 - $20</option>
+        <option value="20+">$20+</option>
       </select>
 
-      <select className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500">
-        <option>Newest</option>
-        <option>Price Low-High</option>
-        <option>Price High-Low</option>
+      <select
+        value={sortBy}
+        onChange={(e) => setSortBy(e.target.value)}
+        className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="newest">Newest</option>
+        <option value="low-high">Price Low-High</option>
+        <option value="high-low">Price High-Low</option>
       </select>
     </div>
   );

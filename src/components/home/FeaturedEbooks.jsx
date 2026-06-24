@@ -2,16 +2,28 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import LoadingSpinner from "@/components/Shared/LoadingSpinner";
 
 export default function FeaturedEbooks() {
   const [ebooks, setEbooks] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-   fetch("https://e-book-platform-backend.vercel.app/ebooks")
+    fetch("https://e-book-platform-backend.vercel.app/ebooks")
       .then((res) => res.json())
-      .then((data) => setEbooks(data))
-      .catch((error) => console.log(error));
+      .then((data) => {
+        setEbooks(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
