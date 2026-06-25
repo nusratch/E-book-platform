@@ -1,4 +1,5 @@
 import BookmarksButton from "@/components/BookmarksButton";
+import PurchaseButton from "./PurchaseButton";
 
 async function getEbook(id) {
   const res = await fetch(
@@ -96,9 +97,7 @@ export default async function EbookDetailsPage({
           </h2>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="w-full sm:w-auto bg-blue-900 text-white px-8 py-3 rounded-xl hover:bg-blue-700 transition font-medium">
-              Purchase Ebook
-            </button>
+            <PurchaseButton ebook={ebook} />
 
             <BookmarksButton ebook={ebook} />
           </div>

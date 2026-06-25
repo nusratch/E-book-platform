@@ -1,73 +1,91 @@
 export default function UserDashboard() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
       <div className="mb-8">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+        <h1 className="text-3xl sm:text-4xl font-bold">
           User Dashboard
         </h1>
 
         <p className="text-gray-500 mt-2">
-          Manage your purchases, bookmarks and profile.
+          Manage your purchases, profile and bookmarked ebooks.
         </p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-2xl shadow-lg border">
-          <h3 className="text-gray-500 text-sm">Purchased Ebooks</h3>
-          <p className="text-3xl font-bold mt-2">15</p>
+
+        <div className="bg-white rounded-2xl border shadow p-6">
+          <h3 className="text-gray-500 text-sm">
+            Purchased Ebooks
+          </h3>
+
+          <p className="text-4xl font-bold mt-3">
+            12
+          </p>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-lg border">
-          <h3 className="text-gray-500 text-sm">Bookmarks</h3>
-          <p className="text-3xl font-bold mt-2">8</p>
+        <div className="bg-white rounded-2xl border shadow p-6">
+          <h3 className="text-gray-500 text-sm">
+            Bookmarks
+          </h3>
+
+          <p className="text-4xl font-bold mt-3">
+            8
+          </p>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-lg border">
-          <h3 className="text-gray-500 text-sm">Completed Reads</h3>
-          <p className="text-3xl font-bold mt-2">12</p>
+        <div className="bg-white rounded-2xl border shadow p-6">
+          <h3 className="text-gray-500 text-sm">
+            Total Spent
+          </h3>
+
+          <p className="text-4xl font-bold mt-3">
+            $185
+          </p>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-lg border">
-          <h3 className="text-gray-500 text-sm">Reviews</h3>
-          <p className="text-3xl font-bold mt-2">5</p>
+        <div className="bg-white rounded-2xl border shadow p-6">
+          <h3 className="text-gray-500 text-sm">
+            Reading Progress
+          </h3>
+
+          <p className="text-4xl font-bold mt-3">
+            72%
+          </p>
         </div>
+
       </div>
 
-      <div className="mt-10 bg-white rounded-2xl shadow-lg border overflow-x-auto">
-        <div className="p-6 border-b">
-          <h2 className="text-2xl font-bold">Purchase History</h2>
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
 
-        <table className="w-full min-w-[600px]">
-          <thead>
-            <tr className="border-b">
-              <th className="text-left p-4">Book</th>
-              <th className="text-left p-4">Writer</th>
-              <th className="text-left p-4">Price</th>
-              <th className="text-left p-4">Status</th>
-            </tr>
-          </thead>
+        <a
+          href="/dashboard/user/purchase-history"
+          className="bg-white border rounded-2xl shadow p-6 hover:shadow-lg transition"
+        >
+          <h2 className="text-xl font-bold mb-2">
+            Purchase History
+          </h2>
 
-          <tbody>
-            <tr>
-              <td className="p-4">Sample Ebook</td>
-              <td className="p-4">Writer Name</td>
-              <td className="p-4">$20</td>
-              <td className="p-4">Purchased</td>
-            </tr>
-          </tbody>
-        </table>
+          <p className="text-gray-500">
+            View all purchased ebooks and payment history.
+          </p>
+        </a>
+
+        <a
+          href="/dashboard/user/purchased-ebooks"
+          className="bg-white border rounded-2xl shadow p-6 hover:shadow-lg transition"
+        >
+          <h2 className="text-xl font-bold mb-2">
+            Purchased Ebooks
+          </h2>
+
+          <p className="text-gray-500">
+            Access all the ebooks you have purchased.
+          </p>
+        </a>
+
       </div>
 
-      <div className="mt-10 bg-white p-6 rounded-2xl shadow-lg border">
-        <h2 className="text-2xl font-bold mb-4">
-          Profile Management
-        </h2>
-
-        <p className="text-gray-500">
-          View and manage your profile information.
-        </p>
-      </div>
     </div>
   );
 }
