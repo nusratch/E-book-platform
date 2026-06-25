@@ -1,16 +1,22 @@
+import "./globals.css";
 import Navbar from "@/components/Shared/Navbar";
 import Footer from "@/components/Shared/Footer";
-import "./globals.css";
-import {Toaster} from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import AuthProvider from "@/providers/AuthProvider";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
-        <Footer />
-        <Toaster position="top-right" reverseOrder={false} />
+        <AuthProvider>
+          <Navbar />
+          {children}
+          <Footer />
+          <Toaster
+            position="top-right"
+            reverseOrder={false}
+          />
+        </AuthProvider>
       </body>
     </html>
   );

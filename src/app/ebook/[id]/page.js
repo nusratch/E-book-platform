@@ -1,3 +1,5 @@
+import BookmarksButton from "@/components/BookmarksButton";
+
 async function getEbook(id) {
   const res = await fetch(
     `https://e-book-platform-backend.vercel.app/ebooks/${id}`,
@@ -16,7 +18,7 @@ async function getEbook(id) {
 export default async function EbookDetailsPage({
   params,
 }) {
-  const { id } = await params;
+  const { id } = params;
 
   const ebook = await getEbook(id);
 
@@ -98,9 +100,7 @@ export default async function EbookDetailsPage({
               Purchase Ebook
             </button>
 
-            <button className="w-full sm:w-auto border border-blue-900 text-blue-900 px-8 py-3 rounded-xl hover:bg-blue-50 transition font-medium">
-              Bookmark
-            </button>
+            <BookmarksButton ebook={ebook} />
           </div>
         </div>
       </div>
