@@ -1,8 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import API_URL from "@/lib/api";
 
 export default function AddEbookPage() {
+  const router = useRouter();
+
+  const user =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("user"))
+      : null;
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -11,6 +21,8 @@ export default function AddEbookPage() {
     cover: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -18,18 +30,39 @@ export default function AddEbookPage() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    try {
+      setLoading(true);
 
-    alert("Ebook Added Successfully");
+      const ebook = {
+        title: formData.title,
+        description: formData.description,
+        price: Number(formData.price),
+        genre: formData.genre,
+        cover: formData.cover,
+        writer: user?.name,
+        writerEmail: user?.email,
+      };
+
+      await axios.post(`${API_URL}/ebooks`, ebook);
+
+      alert("Ebook Added Successfully");
+
+      router.push("/writer/manage-ebooks");
+    } catch (error) {
+      console.log(error);
+
+      alert("Failed to add ebook");
+    } finally {
+      setLoading(false);
+    }
   };
-
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="bg-white rounded-2xl shadow-lg border p-8">
-        <h1 className="text-3xl font-bold mb-2">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+      <div className="bg-white rounded-2xl shadow-lg border p-5 sm:p-8">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-2">
           Add Ebook
         </h1>
 
@@ -49,11 +82,11 @@ export default function AddEbookPage() {
             <input
               type="text"
               name="title"
+              required
               value={formData.title}
               onChange={handleChange}
-              required
               placeholder="Enter ebook title"
-              className="w-full border rounded-lg p-3"
+              className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -65,15 +98,15 @@ export default function AddEbookPage() {
             <textarea
               name="description"
               rows="6"
+              required
               value={formData.description}
               onChange={handleChange}
-              required
               placeholder="Full ebook description..."
-              className="w-full border rounded-lg p-3"
+              className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block mb-2 font-medium">
                 Price ($)
@@ -82,11 +115,11 @@ export default function AddEbookPage() {
               <input
                 type="number"
                 name="price"
+                required
                 value={formData.price}
                 onChange={handleChange}
-                required
                 placeholder="20"
-                className="w-full border rounded-lg p-3"
+                className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -97,10 +130,10 @@ export default function AddEbookPage() {
 
               <select
                 name="genre"
+                required
                 value={formData.genre}
                 onChange={handleChange}
-                required
-                className="w-full border rounded-lg p-3"
+                className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Select Genre</option>
                 <option>Fiction</option>
@@ -117,25 +150,26 @@ export default function AddEbookPage() {
 
           <div>
             <label className="block mb-2 font-medium">
-              Cover Image URL (imgBB)
+              Cover Image URL
             </label>
 
             <input
               type="text"
               name="cover"
+              required
               value={formData.cover}
               onChange={handleChange}
-              required
               placeholder="Paste imgBB image URL"
-              className="w-full border rounded-lg p-3"
+              className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-900 hover:bg-blue-800 text-white py-3 rounded-lg font-semibold"
+            disabled={loading}
+            className="w-full bg-blue-900 hover:bg-blue-800 text-white py-3 rounded-lg font-semibold transition disabled:opacity-60"
           >
-            Add Ebook
+            {loading ? "Adding Ebook..." : "Add Ebook"}
           </button>
         </form>
       </div>

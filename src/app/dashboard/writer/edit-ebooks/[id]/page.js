@@ -1,16 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import axios from "axios";
+import API_URL from "@/lib/api";
 
 export default function EditEbookPage() {
+  const { id } = useParams();
+  const router = useRouter();
+
+  const [loading, setLoading] = useState(true);
+
   const [formData, setFormData] = useState({
-    title: "The Lost Kingdom",
-    description:
-      "This is a sample ebook description.",
-    price: "15",
-    genre: "Fantasy",
-    cover: "https://i.ibb.co/example.jpg",
+    title: "",
+    description: "",
+    price: "",
+    genre: "",
+    cover: "",
   });
+
+  useEffect(() => {
+    const fetchEbook = async () => {
+      try {
+        const res = await axios.get(
+          `${API_URL}/ebooks/${id}`
+        );
+
+        setFormData(res.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchEbook();
+    }
+  }, [id]);
 
   const handleChange = (e) => {
     setFormData({
@@ -19,17 +46,38 @@ export default function EditEbookPage() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    try {
+      await axios.put(
+        `${API_URL}/ebooks/${id}`,
+        formData
+      );
 
-    alert("Ebook Updated Successfully");
+      alert("Ebook Updated Successfully");
+
+      router.push("/writer/manage-ebooks");
+    } catch (error) {
+      console.log(error);
+
+      alert("Update Failed");
+    }
   };
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-[400px]">
+        <h2 className="text-2xl font-semibold">
+          Loading...
+        </h2>
+      </div>
+    );
+  }
+
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="bg-white rounded-2xl shadow-lg border p-8">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+      <div className="bg-white rounded-2xl shadow-lg border p-6 sm:p-8">
         <h1 className="text-3xl font-bold mb-2">
           Edit Ebook
         </h1>
@@ -63,8 +111,8 @@ export default function EditEbookPage() {
             </label>
 
             <textarea
-              name="description"
               rows="6"
+              name="description"
               value={formData.description}
               onChange={handleChange}
               className="w-full border rounded-lg p-3"
@@ -72,7 +120,7 @@ export default function EditEbookPage() {
             />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block mb-2 font-medium">
                 Price
@@ -106,6 +154,7 @@ export default function EditEbookPage() {
                 <option>Fantasy</option>
                 <option>Horror</option>
                 <option>Biography</option>
+                <option>History</option>
               </select>
             </div>
           </div>
@@ -127,7 +176,7 @@ export default function EditEbookPage() {
 
           <button
             type="submit"
-            className="w-full bg-blue-900 text-white py-3 rounded-lg hover:bg-blue-800"
+            className="w-full bg-blue-900 text-white py-3 rounded-lg hover:bg-blue-800 transition"
           >
             Update Ebook
           </button>
