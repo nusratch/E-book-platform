@@ -1,74 +1,117 @@
-export default function UserProfile() {
-  return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6">
-      <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-        <div className="h-32 sm:h-40 bg-gradient-to-r from-pink-500 to-rose-400"></div>
+"use client";
 
-        <div className="px-4 sm:px-8 pb-6 sm:pb-8">
-          <div className="-mt-14 sm:-mt-16 flex flex-col md:flex-row items-center md:items-end gap-5 sm:gap-6 text-center md:text-left">
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
+export default function UserProfile() {
+  const router = useRouter();
+
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    role: "",
+  });
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem("user");
+
+    if (!savedUser) {
+      router.replace("/login");
+      return;
+    }
+
+    const currentUser = JSON.parse(savedUser);
+
+    if (currentUser.role !== "user") {
+      router.replace("/");
+      return;
+    }
+
+    setUser(currentUser);
+  }, [router]);
+
+  return (
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+      <div className="overflow-hidden rounded-3xl bg-white shadow-xl">
+
+        <div className="h-36 sm:h-44 lg:h-52 bg-gradient-to-r from-pink-500 via-rose-500 to-red-400"></div>
+
+        <div className="px-5 sm:px-8 lg:px-10 pb-8">
+
+          <div className="-mt-16 sm:-mt-20 flex flex-col lg:flex-row items-center lg:items-end gap-6 text-center lg:text-left">
+
             <img
-              src="https://i.pravatar.cc/150?img=12"
-              alt="User"
-              className="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-white object-cover"
+              src="https://i.pravatar.cc/250?img=12"
+              alt="Profile"
+              className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full border-4 border-white object-cover shadow-lg"
             />
 
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-bold">
-                Nusrat Chowdhury
+            <div className="flex-1">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold break-words">
+                {user.name}
               </h1>
 
-              <p className="text-gray-500 mt-1">
+              <p className="mt-2 text-gray-500 text-base sm:text-lg">
                 Reader
               </p>
 
-              <p className="text-pink-600 break-all">
-                nusrat@gmail.com
+              <p className="mt-1 text-pink-600 break-all text-sm sm:text-base">
+                {user.email}
               </p>
             </div>
+
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">
-            <div className="bg-pink-50 rounded-xl p-5 text-center">
-              <h2 className="text-3xl font-bold text-pink-600">
-                12
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 mt-10">
+
+            <div className="rounded-2xl bg-pink-50 p-6 text-center">
+              <h2 className="text-4xl font-bold text-pink-600">
+                0
               </h2>
-              <p className="text-gray-600">
+
+              <p className="mt-2 text-gray-600">
                 Purchased Books
               </p>
             </div>
 
-            <div className="bg-pink-50 rounded-xl p-5 text-center">
-              <h2 className="text-3xl font-bold text-pink-600">
-                8
+            <div className="rounded-2xl bg-pink-50 p-6 text-center">
+              <h2 className="text-4xl font-bold text-pink-600">
+                0
               </h2>
-              <p className="text-gray-600">
+
+              <p className="mt-2 text-gray-600">
                 Bookmarks
               </p>
             </div>
 
-            <div className="bg-pink-50 rounded-xl p-5 text-center sm:col-span-2 lg:col-span-1">
-              <h2 className="text-3xl font-bold text-pink-600">
-                25
+            <div className="rounded-2xl bg-pink-50 p-6 text-center sm:col-span-2 xl:col-span-1">
+              <h2 className="text-4xl font-bold text-pink-600">
+                Reader
               </h2>
-              <p className="text-gray-600">
-                Reviews
+
+              <p className="mt-2 text-gray-600">
+                Current Role
               </p>
             </div>
+
           </div>
 
-          <div className="mt-8">
-            <h2 className="text-lg sm:text-xl font-semibold mb-3">
+          <div className="mt-10 rounded-2xl border p-6">
+
+            <h2 className="text-xl sm:text-2xl font-bold mb-4">
               About
             </h2>
 
-            <p className="text-gray-600 leading-7 text-sm sm:text-base">
-              Passionate book reader who enjoys novels,
-              programming books and self-development
-              content. Loves discovering new writers and
-              keeping a personal digital library.
+            <p className="text-gray-600 leading-8 text-sm sm:text-base">
+              Welcome to your Fable profile. Here you can manage your purchased
+              ebooks, bookmarks, and reading activities. This profile displays
+              information for the currently logged-in reader only.
             </p>
+
           </div>
+
         </div>
+
       </div>
     </div>
   );

@@ -21,8 +21,9 @@ export default function PurchaseButton({
               "application/json",
           },
           body: JSON.stringify({
+            ebookId: ebook._id,
             title: ebook.title,
-            price: ebook.price,
+            price: Number(ebook.price),
           }),
         }
       );
@@ -32,11 +33,11 @@ export default function PurchaseButton({
       if (data.url) {
         window.location.href = data.url;
       } else {
-        alert("Unable to start payment.");
+        alert("Unable to create checkout session.");
       }
     } catch (error) {
       console.error(error);
-      alert("Something went wrong.");
+      alert("Payment failed.");
     } finally {
       setLoading(false);
     }
@@ -46,7 +47,7 @@ export default function PurchaseButton({
     <button
       onClick={handlePurchase}
       disabled={loading}
-      className="w-full sm:w-auto bg-blue-900 text-white px-8 py-3 rounded-xl hover:bg-blue-700 transition font-medium disabled:opacity-60"
+      className="w-full sm:w-auto bg-blue-900 text-white px-8 py-3 rounded-xl hover:bg-blue-700 transition disabled:opacity-60"
     >
       {loading
         ? "Redirecting..."

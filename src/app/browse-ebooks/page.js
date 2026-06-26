@@ -25,6 +25,7 @@ export default function BrowsePage() {
         return res.json();
       })
       .then((data) => {
+        console.log(data);
         setEbooks(data);
       })
       .catch((error) => {
@@ -42,25 +43,17 @@ export default function BrowsePage() {
     if (search) {
       result = result.filter(
         (ebook) =>
-          ebook.title
-            ?.toLowerCase()
-            .includes(search.toLowerCase()) ||
-          ebook.writer
-            ?.toLowerCase()
-            .includes(search.toLowerCase())
+          ebook.title?.toLowerCase().includes(search.toLowerCase()) ||
+          ebook.writer?.toLowerCase().includes(search.toLowerCase())
       );
     }
 
     if (genre !== "all") {
-      result = result.filter(
-        (ebook) => ebook.genre === genre
-      );
+      result = result.filter((ebook) => ebook.genre === genre);
     }
 
     if (priceRange === "0-10") {
-      result = result.filter(
-        (ebook) => Number(ebook.price) <= 10
-      );
+      result = result.filter((ebook) => Number(ebook.price) <= 10);
     }
 
     if (priceRange === "10-20") {
@@ -72,21 +65,15 @@ export default function BrowsePage() {
     }
 
     if (priceRange === "20+") {
-      result = result.filter(
-        (ebook) => Number(ebook.price) > 20
-      );
+      result = result.filter((ebook) => Number(ebook.price) > 20);
     }
 
     if (sortBy === "low-high") {
-      result.sort(
-        (a, b) => Number(a.price) - Number(b.price)
-      );
+      result.sort((a, b) => Number(a.price) - Number(b.price));
     }
 
     if (sortBy === "high-low") {
-      result.sort(
-        (a, b) => Number(b.price) - Number(a.price)
-      );
+      result.sort((a, b) => Number(b.price) - Number(a.price));
     }
 
     return result;
@@ -131,7 +118,7 @@ export default function BrowsePage() {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredEbooks.map((ebook) => (
               <EbookCard
                 key={ebook._id}
