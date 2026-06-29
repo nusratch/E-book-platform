@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import axios from "axios";
-import API_URL from "@/lib/api";
+import { API_URL } from "@/lib/api";
 
 export default function PaymentSuccess() {
   const searchParams = useSearchParams();

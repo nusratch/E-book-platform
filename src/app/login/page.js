@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import axios from "axios";
-import API_URL from "@/lib/api";
+import { API_URL } from "@/lib/api";
 
 export default function LoginPage() {
   const router = useRouter();

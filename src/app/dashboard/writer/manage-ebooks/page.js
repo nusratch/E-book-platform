@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
-import API_URL from "@/lib/api";
+import { API_URL } from "@/lib/api";
 
 export default function ManageEbooksPage() {
   const [ebooks, setEbooks] = useState([]);
@@ -112,7 +112,7 @@ export default function ManageEbooksPage() {
           </div>
 
           <Link
-            href="/writer/add-ebook"
+            href="/dashboard/writer/add-ebook"
             className="bg-blue-900 text-white px-5 py-3 rounded-lg hover:bg-blue-800 transition text-center"
           >
             + Add Ebook
@@ -189,7 +189,7 @@ export default function ManageEbooksPage() {
 
                     <td className="p-4">
                       <Link
-                        href={`/writer/edit-ebook/${ebook._id}`}
+                        href={`/dashboard/writer/edit-ebook/${ebook._id}`}
                         className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
                       >
                         Edit

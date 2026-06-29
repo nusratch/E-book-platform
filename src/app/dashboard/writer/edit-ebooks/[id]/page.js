@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
-import API_URL from "@/lib/api";
+import { API_URL } from "@/lib/api";
 
 export default function EditEbookPage() {
   const { id } = useParams();
@@ -22,9 +22,7 @@ export default function EditEbookPage() {
   useEffect(() => {
     const fetchEbook = async () => {
       try {
-        const res = await axios.get(
-          `${API_URL}/ebooks/${id}`
-        );
+        const res = await axios.get(`${API_URL}/ebooks/${id}`);
 
         setFormData(res.data);
       } catch (error) {
@@ -57,7 +55,7 @@ export default function EditEbookPage() {
 
       alert("Ebook Updated Successfully");
 
-      router.push("/writer/manage-ebooks");
+      router.push("/dashboard/writer/manage-ebooks");
     } catch (error) {
       console.log(error);
 

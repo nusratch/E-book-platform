@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import API_URL from "@/lib/api";
+import { API_URL } from "@/lib/api";
 
 export default function AddEbookPage() {
   const router = useRouter();
@@ -50,7 +50,7 @@ export default function AddEbookPage() {
 
       alert("Ebook Added Successfully");
 
-      router.push("/writer/manage-ebooks");
+      router.push("/dashboard/writer/manage-ebooks");
     } catch (error) {
       console.log(error);
 

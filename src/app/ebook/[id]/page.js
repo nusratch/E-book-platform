@@ -1,9 +1,10 @@
 import BookmarksButton from "@/components/BookmarksButton";
 import PurchaseButton from "./PurchaseButton";
+import { API_URL } from "@/lib/api";
 
 async function getEbook(id) {
   const res = await fetch(
-    `https://e-book-platform-backend.vercel.app/ebooks/${id}`,
+    `${API_URL}/ebooks/${id}`,
     {
       cache: "no-store",
     }
@@ -98,7 +99,6 @@ export default async function EbookDetailsPage({
 
           <div className="flex flex-col sm:flex-row gap-4">
             <PurchaseButton ebook={ebook} />
-
             <BookmarksButton ebook={ebook} />
           </div>
         </div>

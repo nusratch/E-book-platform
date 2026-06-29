@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "@/components/Shared/LoadingSpinner";
+import { API_URL } from "@/lib/api";
 
 export default function FeaturedEbooks() {
   const [ebooks, setEbooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://e-book-platform-backend.vercel.app/ebooks")
+    fetch(`${API_URL}/ebooks`)
       .then((res) => res.json())
       .then((data) => {
         setEbooks(data);
