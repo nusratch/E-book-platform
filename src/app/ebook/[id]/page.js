@@ -3,24 +3,32 @@ import PurchaseButton from "./PurchaseButton";
 import { API_URL } from "@/lib/api";
 
 async function getEbook(id) {
-  const res = await fetch(
-    `${API_URL}/ebooks/${id}`,
-    {
-      cache: "no-store",
-    }
-  );
+  console.log("Requested ID:", id);
 
-  if (!res.ok) {
+  try {
+    const res = await fetch(`${API_URL}/ebooks/${id}`, {
+      cache: "no-store",
+    });
+
+    console.log("Response Status:", res.status);
+
+    const data = await res.json();
+
+    console.log("Response Data:", data);
+
+    if (!res.ok) {
+      return null;
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Fetch Error:", error);
     return null;
   }
-
-  return res.json();
 }
 
-export default async function EbookDetailsPage({
-  params,
-}) {
-  const { id } = params;
+export default async function EbookDetailsPage({ params }) {
+  const { id } = await params;
 
   const ebook = await getEbook(id);
 
@@ -61,24 +69,18 @@ export default async function EbookDetailsPage({
           </h1>
 
           <p className="text-gray-600 text-base md:text-lg mb-4">
-            Written by{" "}
-            <span className="font-semibold">
-              {ebook.writer}
-            </span>
+            Written by <span className="font-semibold">{ebook.writer}</span>
           </p>
 
           <p className="text-gray-500 text-sm mb-6">
             Uploaded:{" "}
             {ebook.createdAt
-              ? new Date(
-                  ebook.createdAt
-                ).toLocaleDateString()
+              ? new Date(ebook.createdAt).toLocaleDateString()
               : "Recently"}
           </p>
 
           <p className="text-gray-700 leading-7 md:leading-8 mb-8">
-            {ebook.description ||
-              "No description available."}
+            {ebook.description || "No description available."}
           </p>
 
           <div className="flex flex-wrap gap-3 mb-8">
