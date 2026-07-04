@@ -50,7 +50,25 @@ export default function LoginPage() {
 
       alert("Login Successful");
 
-      router.push("/");
+      
+      const redirect =
+        localStorage.getItem("redirectAfterLogin");
+
+      if (redirect) {
+        localStorage.removeItem("redirectAfterLogin");
+        router.push(redirect);
+        return;
+      }
+
+      
+      if (user.role === "admin") {
+        router.push("/dashboard/admin");
+      } else if (user.role === "writer") {
+        router.push("/dashboard/writer");
+      } else {
+        router.push("/");
+      }
+
     } catch (error) {
       console.log(error);
       alert("Login Failed");

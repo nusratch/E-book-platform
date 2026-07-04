@@ -20,11 +20,18 @@ export default function PurchaseButton({ ebook }) {
   const handlePurchase = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
-    if (!user) {
-      alert("Please login first.");
-      window.location.href = "/login";
-      return;
-    }
+   if (!user) {
+  alert("Please login first.");
+
+  localStorage.setItem(
+    "redirectAfterLogin",
+    window.location.pathname
+  );
+
+  window.location.href = "/login";
+
+  return;
+}
 
     if (user.email === ebook.writerEmail) {
       alert("You cannot purchase your own ebook.");
