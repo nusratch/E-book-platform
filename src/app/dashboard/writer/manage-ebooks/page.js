@@ -30,7 +30,7 @@ export default function ManageEbooksPage() {
       setEbooks(res.data);
     } catch (error) {
       console.log(error);
-      Toaster.error("Failed to load ebooks");
+      toast.error("Failed to load ebooks");
     } finally {
       setLoading(false);
     }
@@ -54,11 +54,11 @@ export default function ManageEbooksPage() {
         )
       );
 
-      Toaster.success("Deleted successfully");
+      toast.success("Deleted successfully");
     } catch (error) {
       console.log(error);
 
-      Toaster.error("Delete failed");
+      toast.error("Delete failed");
     }
   };
 
@@ -79,11 +79,11 @@ export default function ManageEbooksPage() {
 
       fetchEbooks();
 
-      Toaster.success("Status Updated");
+      toast.success("Status Updated");
     } catch (error) {
       console.log(error);
 
-      Toaster.error("Update Failed");
+      toast.error("Update Failed");
     }
   };
 

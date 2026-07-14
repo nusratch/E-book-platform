@@ -25,11 +25,11 @@ export default function LoginPage() {
       const user = res.data;
 
       if (!user) {
-        return Toaster.error("User not found");
+        return toast.error("User not found");
       }
 
       if (user.password !== password) {
-        return Toaster.error("Incorrect password");
+        return toast.error("Incorrect password");
       }
 
       const tokenRes = await axios.post(
@@ -52,7 +52,7 @@ export default function LoginPage() {
 
       
 
-      Toaster.success("Login Successful");
+      toast.success("Login Successful");
       const redirect =
         localStorage.getItem("redirectAfterLogin");
 
@@ -73,7 +73,7 @@ export default function LoginPage() {
 
     } catch (error) {
       console.log(error);
-      Toaster.error("Login Failed");
+      toast.error("Login Failed");
     }
   };
 
@@ -85,7 +85,7 @@ export default function LoginPage() {
     });
   } catch (error) {
     console.log(error);
-    Toaster.error("Google Login Failed");
+    toast.error("Google Login Failed");
   }
 };
 

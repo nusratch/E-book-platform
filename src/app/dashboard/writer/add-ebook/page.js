@@ -49,13 +49,13 @@ export default function AddEbookPage() {
 
       await axios.post(`${API_URL}/ebooks`, ebook);
 
-      Toaster.success("Ebook Added Successfully");
+      toast.success("Ebook Added Successfully");
 
       router.push("/dashboard/writer/manage-ebooks");
     } catch (error) {
       console.log(error);
 
-      Toaster.error("Failed to add ebook");
+      toast.error("Failed to add ebook");
     } finally {
       setLoading(false);
     }

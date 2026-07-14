@@ -29,7 +29,7 @@ const handleRegister = async (e) => {
 e.preventDefault();
 
 if (formData.password !== formData.confirmPassword) {
-  return Toaster.error("Passwords do not match");
+  return toast.error("Passwords do not match");
 }
 
 try {
@@ -62,13 +62,13 @@ try {
     })
   );
 
-  Toaster.success("Registration Successful");
+  toast.success("Registration Successful");
 
   window.location.href = "/";
 } catch (error) {
   console.log(error);
 
-  Toaster.error(
+  toast.error(
     error?.response?.data?.message ||
       "Registration Failed"
   );

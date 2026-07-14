@@ -22,7 +22,7 @@ export default function PurchaseButton({ ebook }) {
     const user = JSON.parse(localStorage.getItem("user"));
 
    if (!user) {
-  Toaster.error("Please login first.");
+  toast.error("Please login first.");
 
   localStorage.setItem(
     "redirectAfterLogin",
@@ -35,12 +35,12 @@ export default function PurchaseButton({ ebook }) {
 }
 
     if (user.email === ebook.writerEmail) {
-      Toaster.error("You cannot purchase your own ebook.");
+      toast.error("You cannot purchase your own ebook.");
       return;
     }
 
     if (alreadyPurchased) {
-      Toaster.error("You already purchased this ebook.");
+      toast.error("You already purchased this ebook.");
       return;
     }
 
@@ -79,11 +79,11 @@ export default function PurchaseButton({ ebook }) {
 
         window.location.href = data.url;
       } else {
-        Toaster.error("Unable to create checkout session.");
+        toast.error("Unable to create checkout session.");
       }
     } catch (error) {
       console.log(error);
-      Toaster.error("Payment failed.");
+      toast.error("Payment failed.");
     } finally {
       setLoading(false);
     }

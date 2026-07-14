@@ -39,12 +39,12 @@ export default function BookmarksButton({ ebook }) {
       const user = JSON.parse(localStorage.getItem("user"));
 
       if (!user) {
-        Toaster.error("Please login first.");
+        toast.error("Please login first.");
         return;
       }
 
       if (saved) {
-        Toaster.error("Already bookmarked");
+        toast.error("Already bookmarked");
         return;
       }
 
@@ -59,11 +59,11 @@ export default function BookmarksButton({ ebook }) {
 
       setSaved(true);
 
-      Toaster.success("Bookmark added successfully");
+      toast.success("Bookmark added successfully");
     } catch (error) {
       console.log(error);
 
-      Toaster.error(
+      toast.error(
         error?.response?.data?.message ||
           "Bookmark failed"
       );

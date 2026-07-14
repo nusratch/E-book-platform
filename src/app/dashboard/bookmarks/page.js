@@ -43,7 +43,7 @@ export default function BookmarksPage() {
       );
     } catch (error) {
       console.log(error);
-      Toaster.error("Failed to remove bookmark");
+      toast.error("Failed to remove bookmark");
     }
   };
 

@@ -54,13 +54,13 @@ export default function EditEbookPage() {
         formData
       );
 
-      Toaster.success("Ebook Updated Successfully");
+      toast.success("Ebook Updated Successfully");
 
       router.push("/dashboard/writer/manage-ebooks");
     } catch (error) {
       console.log(error);
 
-      Toaster.error("Update Failed");
+      toast.error("Update Failed");
     }
   };
 
