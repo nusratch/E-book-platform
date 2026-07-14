@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { API_URL } from "@/lib/api";
-import { Toaster } from "react-hot-toast";
+import  toast from "react-hot-toast";
 
 export default function AddEbookPage() {
   const router = useRouter();

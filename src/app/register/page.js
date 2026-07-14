@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import axios from "axios";
 import { API_URL } from "@/lib/api";
-import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export default function RegisterPage() {
 const router = useRouter();

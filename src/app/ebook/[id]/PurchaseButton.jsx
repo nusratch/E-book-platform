@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Toaster } from "react-hot-toast";
+import  toast from "react-hot-toast";
 
 export default function PurchaseButton({ ebook }) {
   const [loading, setLoading] = useState(false);

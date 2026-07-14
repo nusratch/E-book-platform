@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { API_URL } from "@/lib/api";
-import { Toaster } from "react-hot-toast";
+import  toast from "react-hot-toast";
 
 export default function ManageEbooksPage() {
   const [ebooks, setEbooks] = useState([]);

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "@/lib/api";
-import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export default function BookmarksButton({ ebook }) {
   const [saved, setSaved] = useState(false);
