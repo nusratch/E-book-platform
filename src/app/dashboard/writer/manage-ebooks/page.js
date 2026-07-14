@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { API_URL } from "@/lib/api";
+import { Toaster } from "react-hot-toast";
 
 export default function ManageEbooksPage() {
   const [ebooks, setEbooks] = useState([]);
@@ -29,7 +30,7 @@ export default function ManageEbooksPage() {
       setEbooks(res.data);
     } catch (error) {
       console.log(error);
-      alert("Failed to load ebooks");
+      Toaster.error("Failed to load ebooks");
     } finally {
       setLoading(false);
     }
@@ -53,11 +54,11 @@ export default function ManageEbooksPage() {
         )
       );
 
-      alert("Deleted successfully");
+      Toaster.success("Deleted successfully");
     } catch (error) {
       console.log(error);
 
-      alert("Delete failed");
+      Toaster.error("Delete failed");
     }
   };
 
@@ -78,11 +79,11 @@ export default function ManageEbooksPage() {
 
       fetchEbooks();
 
-      alert("Status Updated");
+      Toaster.success("Status Updated");
     } catch (error) {
       console.log(error);
 
-      alert("Update Failed");
+      Toaster.error("Update Failed");
     }
   };
 

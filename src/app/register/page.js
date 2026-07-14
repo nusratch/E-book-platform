@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import axios from "axios";
 import { API_URL } from "@/lib/api";
+import { Toaster } from "react-hot-toast";
 
 export default function RegisterPage() {
 const router = useRouter();
@@ -28,7 +29,7 @@ const handleRegister = async (e) => {
 e.preventDefault();
 
 if (formData.password !== formData.confirmPassword) {
-  return alert("Passwords do not match");
+  return Toaster.error("Passwords do not match");
 }
 
 try {
@@ -61,13 +62,13 @@ try {
     })
   );
 
-  alert("Registration Successful");
+  Toaster.success("Registration Successful");
 
   window.location.href = "/";
 } catch (error) {
   console.log(error);
 
-  alert(
+  Toaster.error(
     error?.response?.data?.message ||
       "Registration Failed"
   );

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { API_URL } from "@/lib/api";
+import { Toaster } from "react-hot-toast";
 
 export default function BookmarksPage() {
   const [bookmarks, setBookmarks] = useState([]);
@@ -42,7 +43,7 @@ export default function BookmarksPage() {
       );
     } catch (error) {
       console.log(error);
-      alert("Failed to remove bookmark");
+      Toaster.error("Failed to remove bookmark");
     }
   };
 

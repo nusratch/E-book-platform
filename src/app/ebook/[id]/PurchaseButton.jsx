@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 export default function PurchaseButton({ ebook }) {
   const [loading, setLoading] = useState(false);
@@ -21,7 +22,7 @@ export default function PurchaseButton({ ebook }) {
     const user = JSON.parse(localStorage.getItem("user"));
 
    if (!user) {
-  alert("Please login first.");
+  Toaster.error("Please login first.");
 
   localStorage.setItem(
     "redirectAfterLogin",
@@ -34,12 +35,12 @@ export default function PurchaseButton({ ebook }) {
 }
 
     if (user.email === ebook.writerEmail) {
-      alert("You cannot purchase your own ebook.");
+      Toaster.error("You cannot purchase your own ebook.");
       return;
     }
 
     if (alreadyPurchased) {
-      alert("You already purchased this ebook.");
+      Toaster.error("You already purchased this ebook.");
       return;
     }
 
@@ -78,11 +79,11 @@ export default function PurchaseButton({ ebook }) {
 
         window.location.href = data.url;
       } else {
-        alert("Unable to create checkout session.");
+        Toaster.error("Unable to create checkout session.");
       }
     } catch (error) {
       console.log(error);
-      alert("Payment failed.");
+      Toaster.error("Payment failed.");
     } finally {
       setLoading(false);
     }

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import { API_URL } from "@/lib/api";
+import { Toaster } from "react-hot-toast";
 
 export default function EditEbookPage() {
   const { id } = useParams();
@@ -53,13 +54,13 @@ export default function EditEbookPage() {
         formData
       );
 
-      alert("Ebook Updated Successfully");
+      Toaster.success("Ebook Updated Successfully");
 
       router.push("/dashboard/writer/manage-ebooks");
     } catch (error) {
       console.log(error);
 
-      alert("Update Failed");
+      Toaster.error("Update Failed");
     }
   };
 

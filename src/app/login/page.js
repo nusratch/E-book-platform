@@ -1,10 +1,12 @@
 "use client";
-
+import { signIn } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import axios from "axios";
 import { API_URL } from "@/lib/api";
+import { Toaster } from "react-hot-toast";
+
 
 export default function LoginPage() {
   const router = useRouter();
@@ -23,11 +25,11 @@ export default function LoginPage() {
       const user = res.data;
 
       if (!user) {
-        return alert("User not found");
+        return Toaster.error("User not found");
       }
 
       if (user.password !== password) {
-        return alert("Incorrect password");
+        return Toaster.error("Incorrect password");
       }
 
       const tokenRes = await axios.post(
@@ -48,9 +50,9 @@ export default function LoginPage() {
         JSON.stringify(user)
       );
 
-      alert("Login Successful");
-
       
+
+      Toaster.success("Login Successful");
       const redirect =
         localStorage.getItem("redirectAfterLogin");
 
@@ -71,9 +73,21 @@ export default function LoginPage() {
 
     } catch (error) {
       console.log(error);
-      alert("Login Failed");
+      Toaster.error("Login Failed");
     }
   };
+
+ const handleGoogleLogin = async () => {
+  try {
+    await signIn.social({
+      provider: "google",
+      callbackURL: `${window.location.origin}/login-success`,
+    });
+  } catch (error) {
+    console.log(error);
+    Toaster.error("Google Login Failed");
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-10">
@@ -141,9 +155,12 @@ export default function LoginPage() {
           <div className="flex-1 border-t"></div>
         </div>
 
-        <button className="w-full border py-3 rounded-lg font-medium hover:bg-slate-100 transition">
-          Continue with Google
-        </button>
+       <button
+  onClick={handleGoogleLogin}
+  className="w-full border py-3 rounded-lg font-medium hover:bg-slate-100 transition"
+>
+  Continue with Google
+</button>
 
         <p className="text-center mt-6 text-sm sm:text-base">
           Don't have an account?{" "}

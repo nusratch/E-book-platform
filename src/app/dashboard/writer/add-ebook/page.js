@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { API_URL } from "@/lib/api";
+import { Toaster } from "react-hot-toast";
 
 export default function AddEbookPage() {
   const router = useRouter();
@@ -48,13 +49,13 @@ export default function AddEbookPage() {
 
       await axios.post(`${API_URL}/ebooks`, ebook);
 
-      alert("Ebook Added Successfully");
+      Toaster.success("Ebook Added Successfully");
 
       router.push("/dashboard/writer/manage-ebooks");
     } catch (error) {
       console.log(error);
 
-      alert("Failed to add ebook");
+      Toaster.error("Failed to add ebook");
     } finally {
       setLoading(false);
     }

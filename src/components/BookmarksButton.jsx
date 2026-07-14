@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "@/lib/api";
+import { Toaster } from "react-hot-toast";
 
 export default function BookmarksButton({ ebook }) {
   const [saved, setSaved] = useState(false);
@@ -38,12 +39,12 @@ export default function BookmarksButton({ ebook }) {
       const user = JSON.parse(localStorage.getItem("user"));
 
       if (!user) {
-        alert("Please login first.");
+        Toaster.error("Please login first.");
         return;
       }
 
       if (saved) {
-        alert("Already bookmarked");
+        Toaster.error("Already bookmarked");
         return;
       }
 
@@ -58,11 +59,11 @@ export default function BookmarksButton({ ebook }) {
 
       setSaved(true);
 
-      alert("Bookmark added successfully");
+      Toaster.success("Bookmark added successfully");
     } catch (error) {
       console.log(error);
 
-      alert(
+      Toaster.error(
         error?.response?.data?.message ||
           "Bookmark failed"
       );
