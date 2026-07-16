@@ -34,7 +34,7 @@ export default function WriterProfile() {
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
       <div className="overflow-hidden rounded-3xl bg-white shadow-xl">
 
-        <div className="h-36 sm:h-44 lg:h-52 bg-gradient-to-r from-violet-600 via-fuchsia-600 to-purple-500"></div>
+        <div className="h-36 sm:h-44 lg:h-52 bg-gradient-to-r from-blue-900 via-blue-700 to-sky-500"></div>
 
         <div className="px-5 sm:px-8 lg:px-10 pb-8">
 
@@ -56,7 +56,7 @@ export default function WriterProfile() {
                 Ebook Writer
               </p>
 
-              <p className="mt-1 text-violet-600 break-all text-sm sm:text-base">
+              <p className="mt-1 text-blue-700 break-all text-sm sm:text-base">
                 {user.email}
               </p>
 
@@ -66,8 +66,18 @@ export default function WriterProfile() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mt-10">
 
-            <div className="rounded-2xl bg-violet-50 p-6 text-center">
-              <h2 className="text-4xl font-bold text-violet-600">
+            <div className="rounded-2xl bg-blue-50 p-6 text-center">
+              <h2 className="text-4xl font-bold text-blue-900">
+                0
+              </h2>
+
+              <p className="mt-2 text-gray-600">
+                Total Ebooks
+              </p>
+            </div>
+
+            <div className="rounded-2xl bg-blue-50 p-6 text-center">
+              <h2 className="text-4xl font-bold text-blue-900">
                 0
               </h2>
 
@@ -76,8 +86,8 @@ export default function WriterProfile() {
               </p>
             </div>
 
-            <div className="rounded-2xl bg-violet-50 p-6 text-center">
-              <h2 className="text-4xl font-bold text-violet-600">
+            <div className="rounded-2xl bg-blue-50 p-6 text-center">
+              <h2 className="text-4xl font-bold text-blue-900">
                 0
               </h2>
 
@@ -86,18 +96,8 @@ export default function WriterProfile() {
               </p>
             </div>
 
-            <div className="rounded-2xl bg-violet-50 p-6 text-center">
-              <h2 className="text-4xl font-bold text-violet-600">
-                0.0
-              </h2>
-
-              <p className="mt-2 text-gray-600">
-                Average Rating
-              </p>
-            </div>
-
-            <div className="rounded-2xl bg-violet-50 p-6 text-center">
-              <h2 className="text-4xl font-bold text-violet-600">
+            <div className="rounded-2xl bg-blue-50 p-6 text-center">
+              <h2 className="text-4xl font-bold text-blue-900">
                 $0
               </h2>
 
@@ -111,13 +111,14 @@ export default function WriterProfile() {
           <div className="mt-10 rounded-2xl border p-6">
 
             <h2 className="text-xl sm:text-2xl font-bold mb-4">
-              Biography
+              About
             </h2>
 
             <p className="text-gray-600 leading-8 text-sm sm:text-base">
-              Welcome to your writer profile. From here you can manage your
-              ebooks, monitor sales, publish new books, and track your writing
-              progress on the Fable platform.
+              Welcome to your Fable writer profile. From here you can publish
+              new ebooks, manage your existing library, monitor sales, and grow
+              your audience by sharing original stories with readers around the
+              world.
             </p>
 
           </div>

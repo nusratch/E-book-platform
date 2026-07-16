@@ -24,7 +24,7 @@ export default function ManageEbooksPage() {
   const fetchEbooks = async () => {
     try {
       const res = await axios.get(
-        `${API_URL}/writer/${user.email}`
+        `${API_URL}/ebooks/writer/${user.email}`
       );
 
       setEbooks(res.data);
@@ -190,7 +190,7 @@ export default function ManageEbooksPage() {
 
                     <td className="p-4">
                       <Link
-                        href={`/dashboard/writer/edit-ebook/${ebook._id}`}
+                        href={`/dashboard/writer/edit-ebooks/${ebook._id}`}
                         className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
                       >
                         Edit

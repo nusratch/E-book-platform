@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import { API_URL } from "@/lib/api";
-import  toast from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export default function EditEbookPage() {
   const { id } = useParams();
   const router = useRouter();
 
   const [loading, setLoading] = useState(true);
+  const [updating, setUpdating] = useState(false);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -25,9 +26,16 @@ export default function EditEbookPage() {
       try {
         const res = await axios.get(`${API_URL}/ebooks/${id}`);
 
-        setFormData(res.data);
+        setFormData({
+          title: res.data.title || "",
+          description: res.data.description || "",
+          price: res.data.price || "",
+          genre: res.data.genre || "",
+          cover: res.data.cover || "",
+        });
       } catch (error) {
         console.log(error);
+        toast.error("Failed to load ebook");
       } finally {
         setLoading(false);
       }
@@ -49,18 +57,21 @@ export default function EditEbookPage() {
     e.preventDefault();
 
     try {
-      await axios.put(
-        `${API_URL}/ebooks/${id}`,
-        formData
-      );
+      setUpdating(true);
+
+      await axios.put(`${API_URL}/ebooks/${id}`, {
+        ...formData,
+        price: Number(formData.price),
+      });
 
       toast.success("Ebook Updated Successfully");
 
       router.push("/dashboard/writer/manage-ebooks");
     } catch (error) {
       console.log(error);
-
       toast.error("Update Failed");
+    } finally {
+      setUpdating(false);
     }
   };
 
@@ -77,6 +88,7 @@ export default function EditEbookPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
       <div className="bg-white rounded-2xl shadow-lg border p-6 sm:p-8">
+
         <h1 className="text-3xl font-bold mb-2">
           Edit Ebook
         </h1>
@@ -89,6 +101,7 @@ export default function EditEbookPage() {
           onSubmit={handleSubmit}
           className="space-y-6"
         >
+
           <div>
             <label className="block mb-2 font-medium">
               Ebook Title
@@ -99,7 +112,7 @@ export default function EditEbookPage() {
               name="title"
               value={formData.title}
               onChange={handleChange}
-              className="w-full border rounded-lg p-3"
+              className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
@@ -114,15 +127,16 @@ export default function EditEbookPage() {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              className="w-full border rounded-lg p-3"
+              className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
             <div>
               <label className="block mb-2 font-medium">
-                Price
+                Price ($)
               </label>
 
               <input
@@ -130,7 +144,7 @@ export default function EditEbookPage() {
                 name="price"
                 value={formData.price}
                 onChange={handleChange}
-                className="w-full border rounded-lg p-3"
+                className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
@@ -144,8 +158,9 @@ export default function EditEbookPage() {
                 name="genre"
                 value={formData.genre}
                 onChange={handleChange}
-                className="w-full border rounded-lg p-3"
+                className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500"
               >
+                <option value="">Select Genre</option>
                 <option>Fiction</option>
                 <option>Mystery</option>
                 <option>Romance</option>
@@ -156,6 +171,7 @@ export default function EditEbookPage() {
                 <option>History</option>
               </select>
             </div>
+
           </div>
 
           <div>
@@ -168,18 +184,21 @@ export default function EditEbookPage() {
               name="cover"
               value={formData.cover}
               onChange={handleChange}
-              className="w-full border rounded-lg p-3"
+              className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-900 text-white py-3 rounded-lg hover:bg-blue-800 transition"
+            disabled={updating}
+            className="w-full bg-blue-900 hover:bg-blue-800 text-white py-3 rounded-lg font-semibold transition disabled:opacity-60"
           >
-            Update Ebook
+            {updating ? "Updating Ebook..." : "Update Ebook"}
           </button>
+
         </form>
+
       </div>
     </div>
   );

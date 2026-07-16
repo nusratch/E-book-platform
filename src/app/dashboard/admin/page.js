@@ -1,8 +1,48 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { API_URL } from "@/lib/api";
+
 export default function AdminDashboard() {
+  const [stats, setStats] =useState({
+    users: 0,
+    writers: 0,
+    ebooks: 0,
+    revenue: 0,
+  });
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const usersRes = await axios.get(`${API_URL}/users`);
+      const ebooksRes = await axios.get(`${API_URL}/ebooks`);
+      const transactionsRes = await axios.get(`${API_URL}/transactions`);
+
+      const users = usersRes.data;
+      const ebooks = ebooksRes.data;
+      const transactions = transactionsRes.data;
+
+      setStats({
+        users: users.filter((u) => u.role === "user").length,
+        writers: users.filter((u) => u.role === "writer").length,
+        ebooks: ebooks.length,
+        revenue: transactions.reduce(
+          (sum, item) => sum + Number(item.amount || 0),
+          0
+        ),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
       <div className="mb-8">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
           Admin Dashboard
@@ -14,68 +54,31 @@ export default function AdminDashboard() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-        <div className="bg-white rounded-2xl shadow-lg border p-6">
-          <h3 className="text-sm text-gray-500">
-            Total Users
-          </h3>
 
-          <p className="text-3xl md:text-4xl font-bold mt-3">
-            1,254
-          </p>
+        <div className="bg-white rounded-2xl shadow-lg border p-6">
+          <h3 className="text-sm text-gray-500">Total Users</h3>
+          <p className="text-4xl font-bold mt-3">{stats.users}</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg border p-6">
-          <h3 className="text-sm text-gray-500">
-            Total Writers
-          </h3>
-
-          <p className="text-3xl md:text-4xl font-bold mt-3">
-            328
-          </p>
+          <h3 className="text-sm text-gray-500">Total Writers</h3>
+          <p className="text-4xl font-bold mt-3">{stats.writers}</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg border p-6">
-          <h3 className="text-sm text-gray-500">
-            Ebooks Sold
-          </h3>
-
-          <p className="text-3xl md:text-4xl font-bold mt-3">
-            5,846
-          </p>
+          <h3 className="text-sm text-gray-500">Total Ebooks</h3>
+          <p className="text-4xl font-bold mt-3">{stats.ebooks}</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg border p-6">
-          <h3 className="text-sm text-gray-500">
-            Total Revenue
-          </h3>
-
-          <p className="text-3xl md:text-4xl font-bold mt-3">
-            $18,450
+          <h3 className="text-sm text-gray-500">Total Revenue</h3>
+          <p className="text-4xl font-bold mt-3">
+            ${stats.revenue}
           </p>
         </div>
+
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-10">
-        <div className="bg-white rounded-2xl shadow-lg border p-6">
-          <h2 className="text-xl sm:text-2xl font-bold mb-5">
-            Monthly Sales
-          </h2>
-
-          <div className="h-64 sm:h-72 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 text-center px-4">
-            Monthly Sales Chart
-          </div>
-        </div>
-
-        <div className="bg-white rounded-2xl shadow-lg border p-6">
-          <h2 className="text-xl sm:text-2xl font-bold mb-5">
-            Ebooks by Genre
-          </h2>
-
-          <div className="h-64 sm:h-72 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 text-center px-4">
-            Genre Pie Chart
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
