@@ -1,4 +1,44 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Link from "next/link";
+import { API_URL } from "@/lib/api";
+
 export default function UserDashboard() {
+  const [purchases, setPurchases] = useState([]);
+  const [bookmarks, setBookmarks] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user) return;
+
+        const purchaseRes = await axios.get(
+          `${API_URL}/purchases/${user.email}`
+        );
+
+        const bookmarkRes = await axios.get(
+          `${API_URL}/bookmarks/${user.email}`
+        );
+
+        setPurchases(purchaseRes.data);
+        setBookmarks(bookmarkRes.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const totalSpent = purchases.reduce(
+    (sum, item) => sum + Number(item.price),
+    0
+  );
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
@@ -20,7 +60,7 @@ export default function UserDashboard() {
           </h3>
 
           <p className="text-4xl font-bold mt-3">
-            12
+            {purchases.length}
           </p>
         </div>
 
@@ -30,7 +70,7 @@ export default function UserDashboard() {
           </h3>
 
           <p className="text-4xl font-bold mt-3">
-            8
+            {bookmarks.length}
           </p>
         </div>
 
@@ -40,7 +80,7 @@ export default function UserDashboard() {
           </h3>
 
           <p className="text-4xl font-bold mt-3">
-            $185
+            ${totalSpent}
           </p>
         </div>
 
@@ -50,7 +90,7 @@ export default function UserDashboard() {
           </h3>
 
           <p className="text-4xl font-bold mt-3">
-            72%
+            {purchases.length > 0 ? "100%" : "0%"}
           </p>
         </div>
 
@@ -58,7 +98,7 @@ export default function UserDashboard() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
 
-        <a
+        <Link
           href="/dashboard/user/purchase-history"
           className="bg-white border rounded-2xl shadow p-6 hover:shadow-lg transition"
         >
@@ -69,9 +109,9 @@ export default function UserDashboard() {
           <p className="text-gray-500">
             View all purchased ebooks and payment history.
           </p>
-        </a>
+        </Link>
 
-        <a
+        <Link
           href="/dashboard/user/purchased-ebooks"
           className="bg-white border rounded-2xl shadow p-6 hover:shadow-lg transition"
         >
@@ -82,7 +122,7 @@ export default function UserDashboard() {
           <p className="text-gray-500">
             Access all the ebooks you have purchased.
           </p>
-        </a>
+        </Link>
 
       </div>
 

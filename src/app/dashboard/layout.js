@@ -64,7 +64,7 @@ export default function DashboardLayout({ children }) {
             Purchase History
           </Link>
 
-          <Link href="/dashboard/bookmarks" className="px-4 py-3 rounded-lg hover:bg-blue-800 transition">
+          <Link href="/dashboard/user/bookmarks" className="px-4 py-3 rounded-lg hover:bg-blue-800 transition">
             Bookmarks
           </Link>
         </>
@@ -90,7 +90,7 @@ export default function DashboardLayout({ children }) {
             Sales History
           </Link>
 
-          <Link href="/dashboard/bookmarks" className="px-4 py-3 rounded-lg hover:bg-blue-800 transition">
+          <Link href="/dashboard/writer/bookmarks" className="px-4 py-3 rounded-lg hover:bg-blue-800 transition">
             Bookmarks
           </Link>
         </>
