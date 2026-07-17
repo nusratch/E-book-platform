@@ -11,8 +11,8 @@ export default function LoginSuccessPage() {
 
   useEffect(() => {
     const finishLogin = async () => {
-      try {
-        const session = await authClient.getSession();
+      try {const session = await authClient.getSession();
+console.log("SESSION:", session);
 
         const sessionData = session?.data;
 
