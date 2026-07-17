@@ -1,5 +1,5 @@
 "use client";
-
+import { signIn } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -74,6 +74,17 @@ try {
   );
 }
 
+};
+const handleGoogleLogin = async () => {
+  try {
+    await signIn.social({
+      provider: "google",
+      callbackURL: `${window.location.origin}/login-success`,
+    });
+  } catch (error) {
+    console.log(error);
+    toast.error("Google Login Failed");
+  }
 };
 
 return (
