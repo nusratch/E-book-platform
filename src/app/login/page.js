@@ -78,6 +78,7 @@ export default function LoginPage() {
   };
 
  const handleGoogleLogin = async () => {
+  console.log("Google button clicked");
   try {
     await signIn.social({
       provider: "google",
@@ -88,6 +89,7 @@ export default function LoginPage() {
     toast.error("Google Login Failed");
   }
 };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-10">
