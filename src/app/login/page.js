@@ -76,19 +76,19 @@ export default function LoginPage() {
       toast.error("Login Failed");
     }
   };
-
- const handleGoogleLogin = async () => {
+  
+const handleGoogleLogin = async () => {
   try {
     await signIn.social({
       provider: "google",
       callbackURL: `${window.location.origin}/login-success`,
+      newUserCallbackURL: `${window.location.origin}/login-success`,
     });
   } catch (error) {
     console.log(error);
     toast.error("Google Login Failed");
   }
 };
-
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-10">

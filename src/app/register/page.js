@@ -75,11 +75,14 @@ try {
 }
 
 };
+
+
 const handleGoogleLogin = async () => {
   try {
     await signIn.social({
       provider: "google",
       callbackURL: `${window.location.origin}/login-success`,
+      newUserCallbackURL: `${window.location.origin}/login-success`,
     });
   } catch (error) {
     console.log(error);
