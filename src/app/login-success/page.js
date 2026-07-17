@@ -12,7 +12,10 @@ export default function LoginSuccessPage() {
   useEffect(() => {
     const finishLogin = async () => {
       try {const session = await authClient.getSession();
-console.log("SESSION:", session);
+
+           console.log("SESSION:", session);
+           console.log("USER:", session?.data?.user);
+          console.log("EMAIL:", session?.data?.user?.email);
 
         const sessionData = session?.data;
 
@@ -24,21 +27,20 @@ console.log("SESSION:", session);
         const email = sessionData.user.email;
 
         let user;
+const res = await axios.get(`${API_URL}/users/${email}`);
 
-        try {
-          const res = await axios.get(`${API_URL}/users/${email}`);
-          user = res.data;
-        } catch {
-          user = {
-            name: sessionData.user.name,
-            email: sessionData.user.email,
-            image: sessionData.user.image,
-            role: "user",
-          };
+if (res.data) {
+  user = res.data;
+} else {
+  user = {
+    name: sessionData.user.name,
+    email: sessionData.user.email,
+    image: sessionData.user.image,
+    role: "user",
+  };
 
-          await axios.post(`${API_URL}/users`, user);
-        }
-
+  await axios.post(`${API_URL}/users`, user);
+}
         const tokenRes = await axios.post(`${API_URL}/jwt`, {
           email: user.email,
           role: user.role,
@@ -46,6 +48,9 @@ console.log("SESSION:", session);
 
         localStorage.setItem("token", tokenRes.data.token);
         localStorage.setItem("user", JSON.stringify(user));
+
+        console.log("Saved User:", user);
+       console.log("LocalStorage:", localStorage.getItem("user"));
 
         router.replace("/");
       } catch (error) {
