@@ -185,10 +185,13 @@ Create Account
       <div className="flex-1 border-t"></div>
     </div>
 
-    <button className="w-full border py-3 rounded-lg font-medium hover:bg-slate-100 transition">
-      Continue with Google
-    </button>
-
+    
+       <button
+  onClick={handleGoogleLogin}
+  className="w-full border py-3 rounded-lg font-medium hover:bg-slate-100 transition"
+>
+  Continue with Google
+</button>
     <p className="text-center mt-6">
       Already have an account?{" "}
       <Link

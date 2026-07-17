@@ -78,7 +78,6 @@ export default function LoginPage() {
   };
 
  const handleGoogleLogin = async () => {
-  console.log("Google button clicked");
   try {
     await signIn.social({
       provider: "google",
