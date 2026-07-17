@@ -67,13 +67,16 @@ export default function UserProfile() {
         <div className="px-5 sm:px-8 lg:px-10 pb-8">
 
           <div className="-mt-16 sm:-mt-20 flex flex-col lg:flex-row items-center lg:items-end gap-6 text-center lg:text-left">
-
-            <img
-              src="https://i.pravatar.cc/250?img=12"
-              alt="Profile"
-              className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full border-4 border-white object-cover shadow-lg"
-            />
-
+       <img
+  src={
+    user.image ||
+    `https://ui-avatars.com/api/?name=${encodeURIComponent(
+      user.name || "User"
+    )}&background=2563eb&color=ffffff&size=250`
+  }
+  alt={`${user.name}'s Profile`}
+  className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full border-4 border-white object-cover shadow-lg"
+/>
             <div className="flex-1">
 
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">

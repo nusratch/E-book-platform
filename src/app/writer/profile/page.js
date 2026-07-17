@@ -41,10 +41,15 @@ export default function WriterProfile() {
           <div className="-mt-16 sm:-mt-20 flex flex-col lg:flex-row items-center lg:items-end gap-6 text-center lg:text-left">
 
             <img
-              src="https://i.pravatar.cc/250?img=25"
-              alt="Writer"
-              className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full border-4 border-white object-cover shadow-lg"
-            />
+  src={
+    user.image ||
+    `https://ui-avatars.com/api/?name=${encodeURIComponent(
+      user.name || "Writer"
+    )}&background=2563eb&color=ffffff&size=250`
+  }
+  alt={`${user.name}'s Profile`}
+  className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full border-4 border-white object-cover shadow-lg"
+/>
 
             <div className="flex-1">
 
