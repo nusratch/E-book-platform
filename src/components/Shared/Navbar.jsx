@@ -54,6 +54,8 @@ export default function Navbar() {
     </Link>
   );
 
+  console.log("Navbar User:", user);
+
   return (
     <nav className="sticky top-0 z-50 bg-blue-900 text-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
