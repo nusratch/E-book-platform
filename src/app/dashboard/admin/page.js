@@ -63,7 +63,7 @@ export default function AdminDashboard() {
         ),
       });
 
-      // Monthly Sales Chart Data
+    
       const monthMap = {};
 
       transactions.forEach((item) => {
@@ -85,7 +85,7 @@ export default function AdminDashboard() {
         }))
       );
 
-      // Genre Pie Chart Data
+
       const genreMap = {};
 
       ebooks.forEach((book) => {
